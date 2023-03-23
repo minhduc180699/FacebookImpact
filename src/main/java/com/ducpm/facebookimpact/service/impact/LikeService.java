@@ -1,2 +1,7 @@
-package com.ducpm.facebookimpact.service.impact;public class LikeService {
+package com.ducpm.facebookimpact.service.impact;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class LikeService {
 }

@@ -3,10 +3,9 @@ package com.ducpm.facebookimpact.service.user;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginService extends UserService{
+public class LogoutService {
 
-    @Override
-    public int login(String bearerToken) {
+    public int logout() {
         return 0;
     }
 }

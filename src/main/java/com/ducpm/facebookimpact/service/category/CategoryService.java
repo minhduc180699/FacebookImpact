@@ -1,2 +1,4 @@
-package com.ducpm.facebookimpact.service.category;public class CategoryService {
+package com.ducpm.facebookimpact.service.category;
+
+public abstract class CategoryService {
 }

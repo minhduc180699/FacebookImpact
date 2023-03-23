@@ -1,8 +1,8 @@
-package com.saltlux.documentconverter.utils;
+package com.ducpm.facebookimpact;
 
 //import org.elasticsearch.client.RestClient;
 
-public class AGlobalConf {
+public class GlobalConstant {
     public final static String KAFKA_BROKER_LIST = "35.239.93.122:9094,34.134.222.24:9094";
     public static String TOPIC_CONTENT_NORMAL_ENG = "go_realtime_crawler_en";
     public static String TOPIC_CONTENT_NORMAL_KOR = "go_realtime_crawler_ko";
@@ -27,8 +27,10 @@ public class AGlobalConf {
     public final static String REDIS_PASSWORD_STRING = "6mHwLFOuPy";
     final public static String PREFIX_CACHE = "go_realtime_crawler:";
     public final static String REDIS_KEY_SELECTOR = PREFIX_CACHE + "key:";
-    public static String driverPath = "./chromedriver";
-    public static String browserPath = "/opt/google/chrome/chrome";
+//    public static String driverPath = "./chromedriver";
+//    public static String browserPath = "/opt/google/chrome/chrome";
+    public static String driverPath = "./chromedriver.exe";
+    public static String browserPath = "C:/Program Files/Google/Chrome/Application/chrome.exe";
     final public static long REDIS_CACHE_DOC_EXPIRED_TIME = 60 * 60 * 1;
     public static String[] documentURLRequestList = {"id", "path", "type", "name", "createdDate", "lastModifiedDate", "connectomeId", "lang", "date", "searchType"};
 }
