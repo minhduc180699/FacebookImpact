@@ -21,11 +21,12 @@ public class LikeSchedule {
     private UserService userService;
     @Autowired
     private LikeService likeService;
-    @Scheduled(fixedDelay = 40000)
-    public void login() {
+    @Scheduled(fixedDelay = 120000)
+    public void like() {
         String username = "minhduc180699@yandex.com";
         String password = "Pmd99916081@";
         String url = "https://www.facebook.com/";
+        logger.error("[SCHEDULER] START ");
         int code = userService.login(url, username, password);
         if (code != ErrorCode.SUCCESS) {
             logger.error("[LOGIN] FAILED with code {}", code);

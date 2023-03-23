@@ -3,6 +3,7 @@ package com.ducpm.facebookimpact.service.impact;
 import com.ducpm.facebookimpact.ErrorCode;
 import com.ducpm.facebookimpact.schedule.LikeSchedule;
 import com.google.gson.Gson;
+import jakarta.annotation.PreDestroy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,14 @@ public class LikeService {
     private Gson gson;
     @Autowired
     private ChromeDriver chromeDriver;
+    @PreDestroy
+    public void onExit() {
+        try {
+            chromeDriver.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public int likeFeedLink(String url)  {
         try {
             int count = 2;
@@ -66,13 +75,14 @@ public class LikeService {
                 chromeDriver.switchTo().newWindow(WindowType.WINDOW);
                 chromeDriver.navigate().to(url);
                 chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(7));
-                while (numLike < 3 && (System.currentTimeMillis() - startTime) < 20000) {
+                while (numLike < 3 && (System.currentTimeMillis() - startTime) < 18000) {
 //                    TimeUnit.MILLISECONDS.sleep(1000);
                     List<WebElement> elements = new LinkedList<>();
                     try {
-                        List<WebElement> elementsList = chromeDriver.findElements(By.xpath("//span[@class='x3nfvp2']"));
+                        List<WebElement> elementsList = chromeDriver.findElements(By.xpath("//div[@aria-label='Thích']"));
                         for (WebElement element : elementsList) {
-                            if (element.getSize().width == 18 && element.getSize().height == 18) {
+                            List<WebElement> l1 = element.findElements(By.tagName("div"));
+                            if ( l1.size() > 1) {
                                 elements.add(element);
                             }
                         }
@@ -81,7 +91,8 @@ public class LikeService {
                     }
                     if (elements == null || elements.isEmpty()) {
                         chromeDriver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-                        chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
+                        chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                        TimeUnit.MILLISECONDS.sleep(2000);
                         logger.info("[PAGE DOWN] SUCCESS url: {}", url);
                     } else {
                         for (WebElement element : elements) {
@@ -89,7 +100,7 @@ public class LikeService {
                                 new Actions(chromeDriver).moveToElement(element).perform();
                                 element.click();
                                 TimeUnit.MILLISECONDS.sleep(4000);
-                                chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(1));
+//                                chromeDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(1));
                                 numLike ++;
                                 logger.info("[LIKE] SUCCESS url: {}", url);
                                 if (numLike > 2) break;
