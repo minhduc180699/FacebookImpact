@@ -92,7 +92,7 @@ public class LikeService {
                     if (elements == null || elements.isEmpty()) {
                         chromeDriver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
                         chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                        TimeUnit.MILLISECONDS.sleep(2000);
+                        TimeUnit.MILLISECONDS.sleep(4000);
                         logger.info("[PAGE DOWN] SUCCESS url: {}", url);
                     } else {
                         for (WebElement element : elements) {
