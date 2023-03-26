@@ -10,5 +10,4 @@ public class FacebookImpactApplication {
     public static void main(String[] args) {
         SpringApplication.run(FacebookImpactApplication.class, args);
     }
-
 }

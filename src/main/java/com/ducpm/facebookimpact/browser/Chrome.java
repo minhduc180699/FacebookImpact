@@ -1,22 +1,24 @@
 package com.ducpm.facebookimpact.browser;
 
 import com.ducpm.facebookimpact.GlobalConstant;
+import com.ducpm.facebookimpact.AppConfig;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class Chrome{
+    @Autowired
+    private AppConfig appConfig;
     @Bean
     public ChromeDriver chromeDriver() {
         System.setProperty("webdriver.chrome.driver", GlobalConstant.driverPath);
         ChromeOptions options = new ChromeOptions();
         options.setBinary(GlobalConstant.browserPath);
-//        options.addArguments("--headless");
-//        options.addArguments("--start-fullscreen");
+        options.addArguments("--headless");
+        options.addArguments("--start-fullscreen");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-notifications");
         options.addArguments("--remote-allow-origins=*");

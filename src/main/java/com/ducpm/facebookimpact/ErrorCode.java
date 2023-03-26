@@ -2,6 +2,7 @@ package com.ducpm.facebookimpact;
 
 public class ErrorCode {
     public static int SUCCESS = 0;
+    public static int CHECKPOINT_DETECT = 1;
     public static int LOGIN_FAILED = 10;
     public static int LOGIN_USER_PASS_FAILED = 11;
     public static int LOGIN_COOKIE_FAILED = 12;
